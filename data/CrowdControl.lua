@@ -171,6 +171,7 @@ CrowdControl.aoePlayerSet = {
     [116920] = 1, -- Auroran's Thunder (Auroran's Thunder)
     [133494] = 1, -- Aegis Caller (Aegis Caller's)
     [137526] = 1, -- Hunter's Venom (Venomous)
+    [143077] = 1, -- Stone Husk (Stone Husk)
 
     -- Siege
     [104693] = 1, -- Meatbag Catapult
@@ -473,8 +474,8 @@ CrowdControl.aoeNPCNormal = {
     [88330] = 0, -- Pool of Shadow (Skaafin Masquer)
     [88335] = 0, -- Pool of Shadow (Skaafin Masquer)
     [88334] = 0, -- Pool of Shadow (Skaafin Masquer)
+    [84837] = 1, -- Broken Pact (Skaafin Witchling)
     [87902] = 1, -- Bombard (Arbalest)
-    [84837] = 1, -- Broken Pact (Skaafin)
     [62502] = 1, -- Fiery Wind (Justice Mage)
     [46819] = 1, -- Storm Damage (Cyrodiil Mage)
     [7883] = 1, -- Guardian Storm (Cyrodiil Mage)
@@ -523,7 +524,8 @@ CrowdControl.aoeNPCNormal = {
 -- List of effects sourced by the player that damage self that should be shown
 CrowdControl.LavaAlerts = {
     -- Player
-    [115607] = true, -- Dismount Stun
+    [115607] = true, -- Dismount Stun (Mount)
+    [141004] = true, -- Dismount Stun (Passenger Mount)
 
     -- Consumables
     [68565] = true, -- Stun (Potion of Stun)

@@ -1173,6 +1173,16 @@ LUIE.DebugAuras = {
     [80566] = true, -- Kra'gh
     [80565] = true, -- Kra'gh
 
+    [141897] = true, -- Lady Thorn (Lady Thorn)
+    [141905] = true, -- Corrupted Blood (Lady Thorn)
+    [141972] = true, -- Lady Thorn (Lady Thorn)
+    [142318] = true, -- Synergy Damage Bonus (Lady Thorn)
+    [141971] = true, -- Lady Thorn CD (Lady Thorn)
+    [142307] = true, -- Sanguine Burst Area (Lady Thorn)
+    [142305] = true, -- Sanguine Burst (Lady Thorn)
+    [141927] = true, -- Major Maim (Lady Thorn)
+    [143335] = true, -- Sanguine Burst Immunity (Lady Thorn)
+
     [59585] = true, -- Lord Warden
     [59586] = true, -- Lord Warden
     [59587] = true, -- Lord Warden
@@ -1264,6 +1274,12 @@ LUIE.DebugAuras = {
     [116880] = true, -- Stonekeeper (Stonekeeper)
     [116881] = true, -- Stonekeeper (Stonekeeper)
 
+    [142977] = true, -- Stone Husk (Stone Husk)
+    [143032] = true, -- Stone Husk (Stone Husk)
+    [143077] = true, -- Stone Husk (Stone Husk)
+    [145199] = true, -- Husk Drain (Stone Husk)
+    [144908] = true, -- Stone Husk (Stone Husk)
+
     [80520] = true, -- Stormfist
     [80523] = true, -- Stormfist
     [80522] = true, -- Stormfist
@@ -1352,7 +1368,6 @@ LUIE.DebugAuras = {
     [75746] = true, -- Clever Alchemist
 
     [92769] = true, -- of Daedric Trickery (of Daedric Trickery)
-    [92772] = true, -- of Daedric Trickery (of Daedric Trickery)
     [92774] = true, -- Major Mending (of Daedric Trickery)
     [92771] = true, -- Major Expedition (of Daedric Trickery)
     [92775] = true, -- Major Heroism (of Daedric Trickery)
@@ -1439,12 +1454,6 @@ LUIE.DebugAuras = {
     [32759] = true, -- Torug's Pact (Torug's Pact)
 
     [71018] = true, -- Trial by Fire (Trials)
-    [71055] = true, -- Trial by Fire Cooldown (Trials)
-    [71067] = true, -- Trial by Shock (Trials)
-    [71058] = true, -- Trial by Fire (Trials)
-    [71019] = true, -- Trial by Frost (Trials)
-    [71072] = true, -- Trial by Poison (Trials)
-    [71069] = true, -- Trial by Disease (Trials)
 
     [29098] = true, -- Twilight's Embrace
 
@@ -1473,7 +1482,6 @@ LUIE.DebugAuras = {
 
     [113180] = true, -- Grave-Stake Collector (Grave-Stake Collector)
     [113183] = true, -- Grave-Stake Collector (Grave-Stake Collector)
-    [114172] = true, -- Grave-Stake Collector (Grave-Stake Collector)
     [113181] = true, -- Grave-Stake Collector (Grave-Stake Collector)
     [113259] = true, -- Grave-Stake Collector (Grave-Stake Collector)
     [113185] = true, -- Grave-Stake Collector (Grave-Stake Collector)
@@ -1633,8 +1641,6 @@ LUIE.DebugAuras = {
     [93304] = true, -- Defiler (Defiler's)
     [93307] = true, -- Defiler (Defiler's)
     [93305] = true, -- Defiler (Defiler's)
-    [93326] = true, -- Defiler (Defiler's)
-    [100704] = true, -- Defiler (Defiler's)
 
     [29104] = true, -- Fiord's Legacy (Fiord's)
 
@@ -1650,6 +1656,7 @@ LUIE.DebugAuras = {
     [127192] = true, -- Senche's Bite (Senche's)
 
     [32750] = true, -- Stygian (Stygian)
+    [144480] = true, -- Stygian (Stygian)
 
     [67099] = true, -- Swamp Raider
 
@@ -1677,6 +1684,7 @@ LUIE.DebugAuras = {
 
     [32829] = true, -- Wilderqueen's Arch (of the Wilderqueen)
     [34870] = true, -- Wilderqueen's Arch (of the Wilderqueen)
+    [141867] = true, -- Marauder's Haste (of the Wilderqueen)
 
     [99266] = true, -- Unfathomable Darkness (of Unfathomable Darkness)
     [99267] = true, -- Unfathomable Darkness (of Unfathomable Darkness)
@@ -1688,6 +1696,7 @@ LUIE.DebugAuras = {
     [18991] = true, -- Witchman Armor (Witchman's)
     [18993] = true, -- Witchman Armor (Witchman's)
     [85818] = true, -- Witchman Armor (Witchman's)
+    [141869] = true, -- Witchman Armor (Witchman's)
 
     [106858] = true, -- Gryphon's Ferocity (Gryphon's)
     [106860] = true, -- Minor Expedition (Gryphon's)
@@ -1726,10 +1735,9 @@ LUIE.DebugAuras = {
     [99461] = true, -- Livewire
 
     [79110] = true, -- Hide of Morihaus (of Morihaus)
-    [79315] = true, -- Hide of Horihaus (of Morihaus)
     [79506] = true, -- Hide of Morihaus (of Morihaus)
     [79123] = true, -- Hide of Morihaus (of Morihaus)
-    [79507] = true, -- Tracker (of Morihaus)
+    [79507] = true, -- Hide of Morihaus (of Morihaus)
     [79112] = true, -- Hide of Morihaus (of Morihaus)
 
     [32752] = true, -- Seventh Legion Brute (Seventh Legion's)
@@ -1740,11 +1748,12 @@ LUIE.DebugAuras = {
     [85594] = true, -- Minor Heroism (Shalk's)
 
     [32838] = true, -- Soulshine (of Soulshine)
+    [144478] = true, -- Soulshine (of Soulshine)
 
     [18996] = true, -- Akaviri Dragonguard (of the Dragon)
 
     [52710] = true, -- Way of Fire (of the Fire)
-    [52711] = true, -- Fiery Weapon (of the Fire)
+    [52711] = true, -- Way of Fire (of the Fire)
 
     [85570] = true, -- Green Pact (of the Green Pact)
 
@@ -1795,7 +1804,6 @@ LUIE.DebugAuras = {
     [60419] = true, -- Burning Spellweave
 
     [102026] = true, -- Caluurion's Legacy
-    [102060] = true, -- Caluurion's Legacy
     [102027] = true, -- Caluurion's Legacy (Fire)
     [102032] = true, -- Caluurion's Legacy (Ice)
     [102033] = true, -- Caluurion's Legacy (Disease)
@@ -1819,6 +1827,8 @@ LUIE.DebugAuras = {
     [85609] = true, -- Lamia's Song (Lamia's)
     [85610] = true, -- Lamia's Song (Lamia's)
     [85636] = true, -- Lamia's Song (Lamia's)
+    [143097] = true, -- Lamia's Song (Lamia's)
+    [143098] = true, -- Lamia's Song (Lamia's)
 
     [85604] = true, -- Light Speaker (Light Speaker's)
 
@@ -1837,7 +1847,6 @@ LUIE.DebugAuras = {
     [85603] = true, -- Spider Cultist Cowl (Spider Cultist's)
 
     [66899] = true, -- Spell Power Cure (Spell Power Cure)
-    [69402] = true, -- WGT Heal Set (Spell Power Cure)
     [66902] = true, -- Spell Power Cure (Spell Power Cure)
 
     [67096] = true, -- Combat Physician (of the Combat Physician)
@@ -1902,6 +1911,11 @@ LUIE.DebugAuras = {
     [133387] = true, -- Draugrkin's Grip (Draugrkin)
     [133406] = true, -- Draugrkin's Grip (Draugrkin)
 
+    [142596] = true, --Elemental Catalyst (Elemental Catalyst)
+    [142610] = true, --Flame Weakness (Elemental Catalyst)
+    [142652] = true, --Frost Weakness (Elemental Catalyst)
+    [142653] = true, --Shock Weakness (Elemental Catalyst)
+
     -- Dungeon Sets (Medium)
 
     [85607] = true, -- Strength of the Automaton (Automaton's)
@@ -1936,16 +1950,14 @@ LUIE.DebugAuras = {
     [102113] = true, -- Plague Slinger
 
     [67140] = true, -- Sheer Venom (of Sheer Venom)
-    [67926] = true, -- Sheer Venom (of Sheer Venom)
-    [67927] = true, -- Sheer Venom (of Sheer Venom)
     [67141] = true, -- Sheer Venom (of Sheer Venom)
 
     [85624] = true, -- Spelunker (Spelunker's)
     [85626] = true, -- Spelunker (Spelunker's)
     [85635] = true, -- Spelunker (Spelunker's)
+    [143136] = true, -- Spelunker (Spelunker's)
 
     [66939] = true, -- Storm Master (Storm Master's)
-    [70297] = true, -- Storm Master (Storm Master's)
     [70298] = true, -- Storm Master (Storm Master's)
 
     [85622] = true, -- Sword Dancer (Sword Dancer's)
@@ -2015,6 +2027,20 @@ LUIE.DebugAuras = {
 
     [133281] = true, -- Titanborn Strength (Titanborn's)
 
+    [141203] = true, -- Unleashed Terror (Unleashed)
+    [141204] = true, -- Unleashed Terror (Unleashed)
+    [141249] = true, -- Unleashed Terror Cooldown (Unleashed)
+
+    [142686] = true, -- Kraglen's Howl (Kraglen's)
+    [142687] = true, -- Kraglen's Howl (Kraglen's)
+    [142705] = true, -- Kraglen's Howl (Kraglen's)
+    [142775] = true, -- Heed the Call (Kraglen's)
+    [142817] = true, -- Kraglen's Howl (Kraglen's)
+    [142816] = true, -- Kraglen's Howl (Kraglen's)
+    [143536] = true, -- Synergy Bonus (Kraglen's)
+    [142780] = true, -- Heed the Call (Kraglen's)
+    [142713] = true, -- Kraglen CD (Kraglen's)
+
     -- Dungeon Sets (Heavy)
 
     [102008] = true, -- Curse of Doylemish
@@ -2036,10 +2062,7 @@ LUIE.DebugAuras = {
 
     [97907] = true, -- Hagraven's Garden (Hagraven's)
     [97908] = true, -- Hagraven's Garden (Hagraven's)
-    [97909] = true, -- Hagraven's Garden (Hagraven's)
     [97910] = true, -- Hagraven's Garden (Hagraven's)
-    [97918] = true, -- Hagraven's Garden (Hagraven's)
-    [114802] = true, -- Stun (Hagraven's)
 
     [29123] = true, -- The Ice Furnace (Ice Furnace)
     [34404] = true, -- Frostfire (Ice Furnace)
@@ -2105,10 +2128,11 @@ LUIE.DebugAuras = {
     [111442] = true, -- Haven of Ursus (Haven of Ursus)
     [111443] = true, -- Haven of Ursus (Haven of Ursus)
     [111452] = true, -- Haven of Ursus (Haven of Ursus)
-    [112414] =  true, -- Ursus's Blessing (Haven of Ursus)
-    [111445] =  true, -- Ursus's Blessing (Haven of Ursus)
+    [112414] = true, -- Ursus's Blessing (Haven of Ursus)
+    [111445] = true, -- Ursus's Blessing (Haven of Ursus)
     [111440] = true, -- Ursus CD (Haven of Ursus)
     [113423] = true, -- Checker (Haven of Ursus)
+
     [111220] = true, -- Jailer's Tenacity (Jailer's Tenacity)
     [111221] = true, -- Major Vitality (Jailer's Tenacity)
 
@@ -2136,6 +2160,15 @@ LUIE.DebugAuras = {
     [135554] = true, -- Grave Guardian (Grave Guardian's)
     [133451] = true, -- Grave Guardian (Grave Guardian's)
 
+    [141636] = true, -- Crimson Twilight (Crimson)
+    [141638] = true, -- Crimson Twilight (Crimson)
+    [141642] = true, -- Crimson Twilight (Crimson)
+    [141865] = true, -- Crimson Twilight (Crimson)
+    [145415] = true, -- Crimson Twilight (Crimson)
+
+    [142654] = true, -- Arkasis's Genius (Arkasis)
+    [142660] = true, -- Arkasis's Genius (Arkasis)
+
     -- Trial Sets (Hel Ra Citadel)
 
     [50971] = true, -- Berserking Warrior (Advancing Yokeda)
@@ -2158,6 +2191,7 @@ LUIE.DebugAuras = {
     [51314] = true, -- Destructive Mage (Aether ... of Destruction)
     [51315] = true, -- Destructive Mage (Aether ... of Destruction)
     [51320] = true, -- Mage Destruction Bomb (Aether ... of Destruction)
+    [137519] = true, -- Destructive Mage (Aether ... of Destruction)
 
     [51442] = true, -- Healing Mage (of Mending)
     [51443] = true, -- Healing Bane (of Mending)
@@ -2202,7 +2236,8 @@ LUIE.DebugAuras = {
     [75813] = true, -- Lunar Bastion (of the Lunar Bastion)
     [75814] = true, -- Lunar Baston (of the Lunar Bastion)
     [75815] = true, -- Lunar Bastion (of the Lunar Bastion)
-    [130744] = true, -- Lunar Bastion (of the Lunar Bastion)
+    [142804] = true, -- Lunar Bastion (of the Lunar Bastion)
+    [142808] = true, -- Lunar Bastion (of the Lunar Bastion)
 
     [75766] = true, -- Twilight Remedy (of Twilight Remedy)
     [75768] = true, -- Primal Heal (of Twilight Remedy)
@@ -2308,8 +2343,9 @@ LUIE.DebugAuras = {
     [137989] = true, -- Major Aegis (Vrol's Perfect)
 
     -- Battleground Sets
-    [92908] = true, -- Major Expedition (Coward's Gear)
+    [92908] = true, -- Coward's Gear (Coward's Gear)
     [92909] = true, -- Major Protection (Coward's Gear)
+    [144708] = true, -- Major Expedition (Coward's Gear)
 
     [93099] = true, -- Knight Slayer
     [93104] = true, -- Knight Slayer
@@ -2439,6 +2475,7 @@ LUIE.DebugAuras = {
 
     [32737] = true, -- The Juggernaut (of the Juggernaut)
     [34512] = true, -- The Juggernaut (of the Juggernaut)
+    [142401] = true, -- The Juggernaut (of the Juggernaut)
 
     [129364] = true, -- Battle Hardened (of the Potentates)
     [47356] = true, -- Blessing of the Potentates (of the Potentates)
@@ -2499,7 +2536,6 @@ LUIE.DebugAuras = {
     [71605] = true, -- Hunt Leader (of the Hunt)
     [74106] = true, -- Hunt Leader (of the Hunt)
     [71191] = true, -- Para Bellum (Para Bellum)
-    [71194] = true, -- Para Bellum Timer (Para Bellum)
     [71193] = true, -- Para Bellum Shield (Para Bellum)
 
     [71180] = true, -- Glorious Defender (of Glory)
@@ -2728,6 +2764,18 @@ LUIE.DebugAuras = {
     [33442] = true, -- Sprint Drain
     [41703] = true, -- Sprint
     [41704] = true, -- Sprint
+
+    -- PASSENGER MOUNT
+    [140996] = true, -- Mount Up Passenger
+    [141013] = true, -- Mount Up
+    [141012] = true, -- Mount Up
+    [141001] = true, -- Mount Up
+    [141011] = true, -- Remove on Dismount
+    [141008] = true, -- Dismount
+    [141002] = true, -- Dismount
+    [140998] = true, -- Dismount
+    [141003] = true, -- Pause Mount Stamina Regen
+    [141004] = true, -- Hard Dismount
 
     -- BLOCK
     [14890] = true, -- Block
@@ -3212,8 +3260,8 @@ LUIE.DebugAuras = {
 
     [21007] = true, -- Reflective Scale (Reflective Scale)
 
-    [21014] = true, -- Reflective Plate (Reflective Plate)
-    [108798] = true, -- Snare Removal (Reflective Plate)
+    [21014] = true, -- Protective Plate (Protective Plate)
+    [108798] = true, -- Protective Plate (Protective Plate)
 
     [21017] = true, -- Dragon Fire Scale (Dragon Fire Scale)
     [32753] = true, -- Dragon Fire Scale (Dragon Fire Scale)
@@ -3722,9 +3770,9 @@ LUIE.DebugAuras = {
 
     -- Daedric Summoning
     [31398] = true, -- Rebate (Rank 1)
-    [64860] = true, -- Rebate
     [45198] = true, -- Rebate (Rank 2)
-    [64861] = true, -- Rebate
+    [64849] = true, -- Rebate
+    [143500] = true, -- Rebate
     [31396] = true, -- Power Stone (Rank 1)
     [45196] = true, -- Power Stone (Rank 2)
     [31417] = true, -- Daedric Protection (Rank 1)
@@ -3749,26 +3797,31 @@ LUIE.DebugAuras = {
     -------------------------------------
 
     [43714] = true, -- Crystal Shard (Crystal Shard)
+    [143744] = true, -- Crystal Weaver (Crystal Shard)
 
-    [46331] = true, -- Crystal Blast (Crystal Blast)
-    [46332] = true, -- Crystal Blast (Crystal Blast)
-    [46333] = true, -- Crystal Blast (Crystal Blast)
+    [46331] = true, -- Crystal Weapon (Crystal Weapon)
+    [143804] = true, -- Crystal Weapon (Crystal Weapon)
+    [143808] = true, -- Crystal Weapon (Crystal Weapon)
+    [143806] = true, -- Crystal Weaver (Crystal Weapon)
 
     [46326] = true, -- Crystal Fragments Passive (Crystal Fragments)
     [46324] = true, -- Crystal Fragments (Crystal Fragments)
     [46327] = true, -- Crystal Fragments Proc (Crystal Fragments)
     [114716] = true, -- Crystal Fragments (Crystal Fragments)
+    [143747] = true, -- Crystal Weaver (Crystal Fragments)
 
     [28025] = true, -- Encase (Encase)
     [43759] = true, -- Encase (Encase)
     [43761] = true, -- Encase (Encase)
     [43760] = true, -- Encase (Encase)
+    [143659] = true, -- Encase (Encase)
 
     [28308] = true, -- Shattering Prison (Shattering Prison)
     [43781] = true, -- Encase (Shattering Prison)
     [43782] = true, -- Encase (Shattering Prison)
     [43780] = true, -- Encase (Shattering Prison)
     [28309] = true, -- Shattering Prison (Shattering Prison)
+    [143663] = true, -- Shattering Prison (Shattering Prison)
 
     [28311] = true, -- Restraining Prison (Restraining Prison)
     [43793] = true, -- Encase (Restraining Prison)
@@ -3776,6 +3829,7 @@ LUIE.DebugAuras = {
     [43792] = true, -- Encase (Restraining Prison)
     [108833] = true, -- Restraining Stack Count (Restraining Prison)
     [108832] = true, -- Major Vitality (Restraining Prison)
+    [143668] = true, -- Restraining Prison (Restraining Prison)
 
     [24371] = true, -- Rune Prison (Rune Prison)
     [24559] = true, -- Rune Prison (Rune Prison)
@@ -4134,9 +4188,11 @@ LUIE.DebugAuras = {
     [44721] = true, -- Spear Wall (Rank 2)
     [114841] = true, -- Minor Protetion (Spear Wall)
     [31718] = true, -- Burning Light (Rank 1)
+    [144021] = true, -- Burning Light
     [31720] = true, -- Burning Light
     [80153] = true, -- Burning Light
     [44730] = true, -- Burning Light (Rank 2)
+    [144028] = true, -- Burning Light
     [44731] = true, -- Burning Light
     [80170] = true, -- Burning Light
     [31565] = true, -- Balanced Warrior (Rank 1)
@@ -4191,10 +4247,9 @@ LUIE.DebugAuras = {
     [44432] = true, -- Biting Jabs (Biting Jabs)
     [76912] = true, -- Biting Jabs (Biting Jabs)
 
-    [55219] = true, -- Puncturing Sweeps (Puncturing Sweep)
     [26797] = true, -- Puncturing Sweep (Puncturing Sweep)
-    [103310] = true, -- Puncturing Sweep (Puncturing Sweep)
-    [55183] = true, -- Puncturing Sweep Healing (Puncturing Sweep)
+    --[55183] = true, -- Puncturing Sweep Healing (Puncturing Sweep)
+    [144127] = true, -- Puncturing Sweep Healing (Puncturing Sweep)
     [26799] = true, -- Puncturing Sweep (Puncturing Sweep)
     [44436] = true, -- Puncturing Sweep (Puncturing Sweep)
     [76916] = true, -- Puncturing Sweep (Puncturing Sweep)
@@ -4472,7 +4527,7 @@ LUIE.DebugAuras = {
     [26295] = true, -- Purify (Cleansing Ritual)
 
     [22259] = true, -- Ritual of Retribution (Ritual of Retribution)
-    [26298] = true, -- Ritual of Retribution (Ritual of Retribution)
+    [143432] = true, -- Ritual of Retribution (Ritual of Retribution)
     [80172] = true, -- Ritual of Retribution (Ritual of Retribution)
     [26299] = true, -- Ritual of Retribution (Ritual of Retribution)
     [26301] = true, -- Ritual of Retribution (Ritual of Retribution)
@@ -5187,6 +5242,10 @@ LUIE.DebugAuras = {
     [121518] = true, -- Grave Grasp (Grave Grasp)
     [121513] = true, -- Grave Grasp (Grave Grasp)
     [121517] = true, -- Minor Maim (Grave Grasp)
+    [143916] = true, -- Grave Grasp (Grave Grasp)
+    [143915] = true, -- Grave Grasp (Grave Grasp)
+    [143918] = true, -- Grave Grasp (Grave Grasp)
+    [143917] = true, -- Grave Grasp (Grave Grasp)
 
     [118308] = true, -- Ghostly Embrace (Ghostly Embrace)
     [118311] = true, -- Ghostly Embrace (Ghostly Embrace)
@@ -5195,7 +5254,10 @@ LUIE.DebugAuras = {
     [118314] = true, -- Ghostly Embrace (Ghostly Embrace)
     [118309] = true, -- Ghostly Embrace (Ghostly Embrace)
     [118313] = true, -- Minor Maim (Ghostly Embrace)
+    [143944] = true, -- Ghostly Embrace (Ghostly Embrace)
     [118325] = true, -- Ghostly Embrace (Ghostly Embrace)
+    [143946] = true, -- Ghostly Embrace (Ghostly Embrace)
+    [143945] = true, -- Ghostly Embrace (Ghostly Embrace)
 
     [118352] = true, -- Empowering Grasp (Empowering Grasp)
     [118356] = true, -- Empowering Grasp (Empowering Grasp)
@@ -5207,6 +5269,10 @@ LUIE.DebugAuras = {
     [124816] = true, -- Empowering Grasp (Empowering Grasp)
     [118354] = true, -- Empowering Grasp (Empowering Grasp)
     [118358] = true, -- Minor Maim (Empowering Grasp)
+    [143950] = true, -- Empowering Grasp (Empowering Grasp)
+    [143948] = true, -- Empowering Grasp (Empowering Grasp)
+    [143951] = true, -- Empowering Grasp (Empowering Grasp)
+    [143949] = true, -- Empowering Grasp (Empowering Grasp)
 
     [118802] = true, -- Bone Goliath Transform Setup (Bone Goliath Transformation - All Morphs)
     [123228] = true, -- De-Bone (Bone Goliath Transformation - All Morphs)
@@ -5779,7 +5845,7 @@ LUIE.DebugAuras = {
 
     [85257] = true, -- Toxic Barrage (Toxic Barrage)
     [85260] = true, -- Toxic Barrage (Toxic Barrage)
-    [85261] = true, -- Toxic Barrage (Toxic Barrage)
+    --[85261] = true, -- Toxic Barrage (Toxic Barrage)
 
     [85451] = true, -- Ballista (Ballista)
     [85458] = true, -- Ballista (Ballista)
@@ -6359,6 +6425,7 @@ LUIE.DebugAuras = {
     [32893] = true, -- Eviscerate (Eviscerate)
 
     [38949] = true, -- Blood for Blood
+    [145002] = true, -- Blood for Blood
 
     [38956] = true, -- Arterial Burst
     [81491] = true, -- Arterial Burst
@@ -6488,9 +6555,9 @@ LUIE.DebugAuras = {
     [46142] = true, -- Pursuit (Rank 2)
 
     [32637] = true, -- Blood Rage (Rank 1)
-    [111924] = true, -- Blood Rage
     [46135] = true, -- Blood Rage (Rank 2)
-    [111925] = true, -- Blood Rage
+    [144209] = true, -- Blood Rage
+    [144208] = true, -- Blood Rage
 
     [32639] = true, -- Bloodmoon (Rank 1)
     [40514] = true, -- Ally Bite (Bloodmoon)
@@ -6517,7 +6584,6 @@ LUIE.DebugAuras = {
 
     [39105] = true, -- Brutal Pounce (Brutal Pounce)
     [39109] = true, -- Brutal Pounce (Brutal Pounce)
-    [61369] = true, -- Brutal Pounce (Brutal Pounce)
     [137186] = true, -- Brutal Carnage (Brutal Pounce)
     [137184] = true, -- Brutal Carnage (Brutal Pounce)
     [137189] = true, -- Brutal Carnage (Brutal Pounce)
@@ -8722,6 +8788,7 @@ LUIE.DebugAuras = {
     [79930] = true, -- Lunge (Tracker)
     [79929] = true, -- Lunge (Tracker)
     [78664] = true, -- Lunge (Tracker)
+    [129913] = true, -- Lunge Target (Tracker)
 
     [88481] = true, -- Spectral Claw (Beastcaller)
     [88478] = true, -- Swarm (Beastcaller)
@@ -8851,12 +8918,12 @@ LUIE.DebugAuras = {
     [84820] = true, -- Fiendish Healing (Skaafin Witchling)
     [84821] = true, -- Fiendish Healing (Skaafin Witchling)
 
-    --[84835] = true, -- Broken Pact (Skaafin)
-    --[84851] = true, -- Broken Pact (Skaafin)
-    --[84850] = true, -- Broken Pact (Skaafin)
-    --[84838] = true, -- Broken Pact (Skaafin)
-    --[84836] = true, -- Broken Pact (Skaafin)
-    --[84837] = true, -- Broken Pact (Skaafin)
+    [84835] = true, -- Broken Pact (Skaafin Witchling)
+    [84851] = true, -- Broken Pact (Skaafin Witchling)
+    [84850] = true, -- Broken Pact (Skaafin Witchling)
+    [84838] = true, -- Broken Pact (Skaafin Witchling)
+    [84836] = true, -- Broken Pact (Skaafin Witchling)
+    [84837] = true, -- Broken Pact (Skaafin Witchling)
 
     -------------------------------------
     -- CYRODIIL GUARDS ------------------
@@ -16296,6 +16363,10 @@ LUIE.DebugAuras = {
     [11352] = true, -- Enemy Keep Bonus VII
     [11353] = true, -- Enemy Keep Bonus VIII
     [11356] = true, -- Enemy Keep Bonus IX
+
+    [111540] = true, -- Edge Keep Bonus 1
+    [111552] = true, -- Edge Keep Bonus 2
+    [111553] = true, -- Edge Keep Bonus 3
 
     [15060] = true, -- Defensive Scroll Bonus I
     [16350] = true, -- Defensive Scroll Bonus II

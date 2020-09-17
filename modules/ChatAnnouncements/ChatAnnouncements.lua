@@ -651,7 +651,6 @@ local g_currentGroupLeaderDisplayName = nil           -- Tracks current Group Le
 local g_currentActivityId           = nil           -- current activity ID for LFG.
 local g_stopGroupLeaveQueue         = false         -- Stops group notification messages from printing for a short time an LFG group is formed - Called when a ready check has the possible result of success.
 local g_lfgDisableGroupEvents       = false         -- Stops group notification messages from printing for a short time an LFG group is formed - Called when succesfully joining a new LFG activity.
-local g_groupJoinFudger             = false         -- Toggled on when a group invite is accepted. Controls display of group join message.
 local g_joinLFGOverride             = false         -- Toggled on to stop display of standard group join message when joining an LFG group. Instead an alternate message with the LFG activity name will display.
 local g_leaveLFGOverride            = false         -- Toggled on to modify group leave message to display "You are no longer in an LFG group."
 local g_showActivityStatus          = true          -- Variable to control display of LFG status
@@ -6529,11 +6528,6 @@ function ChatAnnouncements.HookFunction()
     local function GroupUpdateAlert()
         g_currentGroupLeaderRawName = GetRawUnitName(GetGroupLeaderUnitTag())
         g_currentGroupLeaderDisplayName = GetUnitDisplayName(GetGroupLeaderUnitTag())
-
-        if g_groupJoinFudger then
-            zo_callLater(ChatAnnouncements.CheckLFGStatusJoin, 100)
-        end
-        g_groupJoinFudger = false
     end
 
     -- EVENT_GROUP_MEMBER_LEFT (Alert Handler)
@@ -6655,6 +6649,33 @@ function ChatAnnouncements.HookFunction()
             end
         end
 
+
+        return true
+    end
+
+    -- EVENT_GROUP_MEMBER_JOINED (Alert Handler)
+    local function OnGroupMemberJoined(characterName, displayName, isLocalPlayer)
+
+        -- Update index for Group Loot
+        ChatAnnouncements.IndexGroupLoot()
+        g_currentGroupLeaderRawName = GetRawUnitName(GetGroupLeaderUnitTag())
+        g_currentGroupLeaderDisplayName = GetUnitDisplayName(GetGroupLeaderUnitTag())
+
+        -- Determine if the member that joined a group is the player or another member.
+        if isLocalPlayer then
+            zo_callLater(ChatAnnouncements.CheckLFGStatusJoin, 100)
+        else
+            -- Get character & display names
+            local joinedMemberName = ZO_GetPrimaryPlayerName(displayName, characterName)
+            local joinedMemberAccountName = ZO_GetSecondaryPlayerName(displayName, characterName)
+            -- Resolve name links
+            local finalName = ChatAnnouncements.ResolveNameLink(joinedMemberName, joinedMemberAccountName)
+            local finalAlertName = ChatAnnouncements.ResolveNameNoLink(joinedMemberName, joinedMemberAccountName)
+            -- Set final messages to send
+            local SendMessage = (zo_strformat(GetString(SI_LUIE_CA_GROUP_MEMBER_JOIN), finalName))
+            local SendAlert = (zo_strformat(GetString(SI_LUIE_CA_GROUP_MEMBER_JOIN), finalAlertName))
+            zo_callLater(function() ChatAnnouncements.PrintJoinStatusNotSelf(SendMessage, SendAlert) end, 100)
+        end
 
         return true
     end
@@ -7198,8 +7219,8 @@ function ChatAnnouncements.HookFunction()
     ZO_PreHook(alertHandlers, EVENT_GROUPING_TOOLS_READY_CHECK_CANCELLED, GroupReadyCheckCancelAlert)
     ZO_PreHook(alertHandlers, EVENT_GROUP_VETERAN_DIFFICULTY_CHANGED, GroupDifficultyChangeAlert)
 
-    eventManager:RegisterForEvent(moduleName, EVENT_GROUP_INVITE_REMOVED, ChatAnnouncements.GroupInviteRemoved)
-    eventManager:RegisterForEvent(moduleName, EVENT_GROUP_MEMBER_JOINED, ChatAnnouncements.OnGroupMemberJoined)
+    ZO_PreHook(alertHandlers, EVENT_GROUP_MEMBER_JOINED, OnGroupMemberJoined)
+
     eventManager:RegisterForEvent(moduleName, EVENT_GROUP_INVITE_RECEIVED, ChatAnnouncements.OnGroupInviteReceived)
     eventManager:RegisterForEvent(moduleName, EVENT_GROUP_TYPE_CHANGED, ChatAnnouncements.OnGroupTypeChanged)
     eventManager:RegisterForEvent(moduleName, EVENT_GROUP_ELECTION_NOTIFICATION_ADDED, ChatAnnouncements.VoteNotify)
@@ -7963,7 +7984,7 @@ function ChatAnnouncements.HookFunction()
 
     -- EVENT_QUEST_CONDITION_COUNTER_CHANGED (CSA Handler)
     -- Note: Used for quest failure and updates
-    local function ConditionCounterHook(journalIndex, questName, conditionText, conditionType, currConditionVal, newConditionVal, conditionMax, isFailCondition, stepOverrideText, isPushed, isComplete, isConditionComplete, isStepHidden)
+    local function ConditionCounterHook(journalIndex, questName, conditionText, conditionType, currConditionVal, newConditionVal, conditionMax, isFailCondition, stepOverrideText, isPushed, isComplete, isConditionComplete, isStepHidden, isConditionCompleteChanged)
         if isStepHidden or (isPushed and isComplete) or (currConditionVal >= newConditionVal) then
             return true
         end
@@ -8636,7 +8657,7 @@ function ChatAnnouncements.HookFunction()
 
         if ChatAnnouncements.SV.XP.ExperienceLevelUpCA then
             local formattedIcon = ChatAnnouncements.SV.XP.ExperienceLevelUpIcon and zo_strformat("<<1>> ", zo_iconFormatInheritColor(icon, 16, 16)) or ""
-            local formattedString = ExperienceLevelUpColorize:Colorize(zo_strformat("<<1>>!", GetString(SI_CHAMPION_ANNOUNCEMENT_UNLOCKED), formattedIcon))
+            local formattedString = ExperienceLevelUpColorize:Colorize(zo_strformat(GetString(SI_CHAMPION_ANNOUNCEMENT_UNLOCKED), formattedIcon))
             g_queuedMessages[g_queuedMessagesCounter] = { message = formattedString, type = "EXPERIENCE LEVEL" }
             g_queuedMessagesCounter = g_queuedMessagesCounter + 1
             eventManager:RegisterForUpdate(moduleName .. "Printer", 50, ChatAnnouncements.PrintQueuedMessages )
@@ -8678,7 +8699,7 @@ function ChatAnnouncements.HookFunction()
 
         if ChatAnnouncements.SV.XP.ExperienceLevelUpAlert then
             local formattedIcon = ChatAnnouncements.SV.XP.ExperienceLevelUpIcon and zo_strformat("<<1>> ", zo_iconFormat(icon, "75%", "75%")) or ""
-            local text = zo_strformat("<<1>>!", GetString(SI_CHAMPION_ANNOUNCEMENT_UNLOCKED, formattedIcon))
+            local text = zo_strformat(GetString(SI_CHAMPION_ANNOUNCEMENT_UNLOCKED), formattedIcon)
             ZO_Alert(UI_ALERT_CATEGORY_ALERT, nil, text)
         end
 
@@ -9666,6 +9687,20 @@ function ChatAnnouncements.HookFunction()
             enabledNormal = "EsoUI/Art/HUD/radialIcon_cancel_up.dds",
             enabledSelected = "EsoUI/Art/HUD/radialIcon_cancel_over.dds",
         },
+        [SI_PLAYER_TO_PLAYER_RIDE_MOUNT] =
+        {
+            enabledNormal = "EsoUI/Art/HUD/radialIcon_joinMount_up.dds",
+            enabledSelected = "EsoUI/Art/HUD/radialIcon_joinMount_over.dds",
+            disabledNormal = "EsoUI/Art/HUD/radialIcon_joinMount_disabled.dds",
+            disabledSelected = "EsoUI/Art/HUD/radialIcon_joinMount_disabled.dds",
+        },
+        [SI_PLAYER_TO_PLAYER_DISMOUNT] =
+        {
+            enabledNormal = "EsoUI/Art/HUD/radialIcon_dismount_up.dds",
+            enabledSelected = "EsoUI/Art/HUD/radialIcon_dismount_over.dds",
+            disabledNormal = "EsoUI/Art/HUD/radialIcon_dismount_disabled.dds",
+            disabledSelected = "EsoUI/Art/HUD/radialIcon_dismount_disabled.dds",
+        },
     }
 
     local GAMEPAD_INTERACT_ICONS = {
@@ -9720,6 +9755,20 @@ function ChatAnnouncements.HookFunction()
         {
             enabledNormal = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_cancel_down.dds",
             enabledSelected = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_cancel_down.dds",
+        },
+        [SI_PLAYER_TO_PLAYER_RIDE_MOUNT] =
+        {
+            enabledNormal = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_joinMount_down.dds",
+            enabledSelected = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_joinMount_down.dds",
+            disabledNormal = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_joinMount_disabled.dds",
+            disabledSelected = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_joinMount_disabled.dds",
+        },
+        [SI_PLAYER_TO_PLAYER_DISMOUNT] =
+        {
+            enabledNormal = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_dismount_down.dds",
+            enabledSelected = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_dismount_down.dds",
+            disabledNormal = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_dismount_disabled.dds",
+            disabledSelected = "EsoUI/Art/HUD/Gamepad/gp_radialIcon_dismount_disabled.dds",
         },
     }
 
@@ -9779,7 +9828,9 @@ function ChatAnnouncements.HookFunction()
             PlaySound(SOUNDS.GENERAL_ALERT_ERROR)
         end
 
-        if IsPlayerInGroup(currentTargetCharacterNameRaw) then
+        local isInGroup = IsPlayerInGroup(currentTargetCharacterNameRaw)
+
+        if isInGroup then
             local groupKickEnabled = isGroupModificationAvailable and isSoloOrLeader and not groupModicationRequiresVoting or IsInLFGGroup()
             local lfgKick = IsInLFGGroup()
             local groupKickFunction = nil
@@ -9845,6 +9896,16 @@ function ChatAnnouncements.HookFunction()
             end
             local function FriendIgnore() AlertIgnored(SI_LUIE_IGNORE_ERROR_FRIEND) end
             self:AddMenuEntry(GetString(SI_PLAYER_TO_PLAYER_ADD_FRIEND), platformIcons[SI_PLAYER_TO_PLAYER_ADD_FRIEND], ENABLED_IF_NOT_IGNORED, ENABLED_IF_NOT_IGNORED and RequestFriendOption or FriendIgnore)
+        end
+
+        --Passenger Mount--
+        if isInGroup then
+            local mountedState, isRidingGroupMount, hasFreePassengerSlot = GetTargetMountedStateInfo(currentTargetCharacterNameRaw)
+            local isPassengerForTarget = IsGroupMountPassengerForTarget(currentTargetCharacterNameRaw)
+            local groupMountEnabled = (mountedState == PLAYER_MOUNTED_STATE_MOUNT_RIDER and isRidingGroupMount and (not IsMounted() or isPassengerForTarget))
+            local function MountOption() UseMountAsPassenger(currentTargetCharacterNameRaw) end
+            local optionToShow = isPassengerForTarget and SI_PLAYER_TO_PLAYER_DISMOUNT or SI_PLAYER_TO_PLAYER_RIDE_MOUNT
+            self:AddMenuEntry(GetString(optionToShow), platformIcons[optionToShow], groupMountEnabled, MountOption)
         end
 
         --Report--
@@ -10529,15 +10590,8 @@ function ChatAnnouncements.CheckLFGStatusLeave(WasKicked)
     g_leaveLFGOverride = false
 end
 
--- EVENT_GROUP_INVITE_REMOVED
-function ChatAnnouncements.GroupInviteRemoved(eventCode)
-    g_groupJoinFudger = true
-end
-
 -- EVENT_GROUP_INVITE_RECEIVED
 function ChatAnnouncements.OnGroupInviteReceived(eventCode, inviterName, inviterDisplayName)
-    g_groupJoinFudger = false
-
     if ChatAnnouncements.SV.Group.GroupCA then
         local finalName = ChatAnnouncements.ResolveNameLink(inviterName, inviterDisplayName)
         local message = zo_strformat(GetString(SI_LUIE_CA_GROUP_INVITE_MESSAGE), finalName)
@@ -10557,53 +10611,6 @@ function ChatAnnouncements.IndexGroupLoot()
         local displayName = GetUnitDisplayName('group'..i)
         g_groupLootIndex[characterName] = { characterName = characterName, displayName = displayName }
     end
-end
-
--- EVENT_GROUP_MEMBER_JOINED
-function ChatAnnouncements.OnGroupMemberJoined(eventCode, memberName)
-    -- Update index for Group Loot
-    ChatAnnouncements.IndexGroupLoot()
-    g_currentGroupLeaderRawName = GetRawUnitName(GetGroupLeaderUnitTag())
-    g_currentGroupLeaderDisplayName = GetUnitDisplayName(GetGroupLeaderUnitTag())
-
-    g_groupJoinFudger = false
-    local g_partyStack = { }
-    local joinedMemberName = ""
-    local joinedMemberAccountName = ""
-
-    -- Iterate through group member indices to get the relevant UnitTags
-    for i = 1,40 do
-        local memberTag = GetGroupUnitTagByIndex(i)
-        if memberTag == nil then
-            break -- Once we reach a nil value (aka no party member there, stop the loop)
-        end
-        g_partyStack[i] = { memberTag = memberTag }
-    end
-
-    -- Iterate through UnitTags to get the member who just joined
-    for i = 1, #g_partyStack do
-        local unitname = GetRawUnitName(g_partyStack[i].memberTag)
-        if unitname == memberName then
-            joinedMemberName = GetUnitName(g_partyStack[i].memberTag)
-            joinedMemberAccountName = GetUnitDisplayName(g_partyStack[i].memberTag)
-            break -- Break loop once we get the value we need
-        end
-    end
-
-    if joinedMemberName ~= "" and joinedMemberName ~= nil then
-        if LUIE.PlayerNameRaw ~= memberName then
-            -- Can occur if event is before EVENT_PLAYER_ACTIVATED
-            local finalName = ChatAnnouncements.ResolveNameLink(joinedMemberName, joinedMemberAccountName)
-            local finalAlertName = ChatAnnouncements.ResolveNameNoLink(joinedMemberName, joinedMemberAccountName)
-            local SendMessage = (zo_strformat(GetString(SI_LUIE_CA_GROUP_MEMBER_JOIN), finalName))
-            local SendAlert = (zo_strformat(GetString(SI_LUIE_CA_GROUP_MEMBER_JOIN), finalAlertName))
-            zo_callLater(function() ChatAnnouncements.PrintJoinStatusNotSelf(SendMessage, SendAlert) end, 100)
-        elseif LUIE.PlayerNameRaw == memberName then
-            zo_callLater(ChatAnnouncements.CheckLFGStatusJoin, 100)
-        end
-    end
-
-    g_partyStack = { }
 end
 
 -- EVENT_GROUP_TYPE_CHANGED

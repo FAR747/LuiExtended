@@ -507,14 +507,10 @@ function UnitFrames.AltBar_OnMouseEnterWerewolf(control)
     local function UpdateWerewolfPower()
         local currentPower, maxPower = GetUnitPower("player", POWERTYPE_WEREWOLF)
         local percentagePower = zo_floor(currentPower / maxPower * 100)
-        local duration = ( currentPower / 27 )
-        -- Round up by 1 from any decimal number
-        local durationFormatted = math.floor(duration + 0.999)
 
         InitializeTooltip(InformationTooltip, control, BOTTOM, 0, -10)
         SetTooltipText(InformationTooltip, zo_strformat(SI_MONSTERSOCIALCLASS45))
         InformationTooltip:AddLine(zo_strformat(SI_LUIE_UF_WEREWOLF_POWER, currentPower, maxPower, percentagePower))
-        InformationTooltip:AddLine(zo_strformat(SI_LUIE_UF_WEREWOLF_TP, durationFormatted), nil, ZO_NORMAL_TEXT:UnpackRGBA() )
     end
     UpdateWerewolfPower()
 
@@ -1567,8 +1563,8 @@ function UnitFrames.Initialize(enabled)
     g_targetThreshold = UnitFrames.SV.ExecutePercentage
 
     g_healthThreshold = UnitFrames.SV.LowResourceHealth
-    g_magickaThreshold = UnitFrames.SV.LowResourceStamina
-    g_staminaThreshold = UnitFrames.SV.LowResourceMagicka
+    g_magickaThreshold = UnitFrames.SV.LowResourceMagicka
+    g_staminaThreshold = UnitFrames.SV.LowResourceStamina
 
     CreateDefaultFrames()
 
@@ -2607,7 +2603,7 @@ function UnitFrames.UpdateStaticControls( unitFrame )
 
     end
     -- Finally set transparency for group frames that has .control field
-    if "group" == string.sub(unitFrame.unitTag, 0, 5) and unitFrame.control then
+    if unitFrame.unitTag and "group" == string.sub(unitFrame.unitTag, 0, 5) and unitFrame.control then
         unitFrame.control:SetAlpha( IsUnitInGroupSupportRange(unitFrame.unitTag) and ( UnitFrames.SV.GroupAlpha * 0.01) or ( UnitFrames.SV.GroupAlpha * 0.01) / 2 )
     end
 end
@@ -2692,6 +2688,8 @@ end
 -- Updates title for unit if changed, and also re-anchors buffs or toggles display on/off if the unitTag had no title selected previously
 -- Called from EVENT_TITLE_UPDATE & EVENT_RANK_POINT_UPDATE
 function UnitFrames.TitleUpdate( eventCode, unitTag )
+    -- No need to update title for anything but reticleover target
+    if unitTag ~= "reticleover" then return end
     UnitFrames.UpdateStaticControls( g_DefaultFrames[unitTag] )
     UnitFrames.UpdateStaticControls( UnitFrames.CustomFrames[unitTag] )
     UnitFrames.UpdateStaticControls( g_AvaCustFrames[unitTag] )
@@ -5059,8 +5057,8 @@ end
 
 function UnitFrames.CustomFramesReloadLowResourceThreshold()
     g_healthThreshold = UnitFrames.SV.LowResourceHealth
-    g_magickaThreshold = UnitFrames.SV.LowResourceStamina
-    g_staminaThreshold = UnitFrames.SV.LowResourceMagicka
+    g_magickaThreshold = UnitFrames.SV.LowResourceMagicka
+    g_staminaThreshold = UnitFrames.SV.LowResourceStamina
 
     if UnitFrames.CustomFrames["player"] and UnitFrames.CustomFrames["player"][POWERTYPE_HEALTH] then
         UnitFrames.CustomFrames["player"][POWERTYPE_HEALTH].threshold = g_healthThreshold

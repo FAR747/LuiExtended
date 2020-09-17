@@ -7,6 +7,14 @@ local Unitnames = LUIE.Data.UnitNames
 local Zonenames = LUIE.Data.ZoneNames
 local Abilities = LUIE.Data.Abilities
 
+LUIE.Data.ZoneTable = {
+
+    [63157] = { block = true, dodge = true, priority = 2, bs = true, result = ACTION_RESULT_BEGIN, duration = 1500, cc = LUIE_CC_TYPE_STUN, sound = LUIE_ALERT_SOUND_TYPE_ST_CC }, -- Heavy Blow (Justice Guard 1H)
+    [63261] = { block = true, dodge = true, priority = 2, bs = true, result = ACTION_RESULT_BEGIN, duration = 1250, cc = LUIE_CC_TYPE_STUN, sound = LUIE_ALERT_SOUND_TYPE_ST_CC }, -- Heavy Blow (Justice Guard 2H)
+    [63179] = { block = true, dodge = true, interrupt = true, reflect = true, priority = 2, result = ACTION_RESULT_BEGIN, duration = 1000, cc = LUIE_CC_TYPE_STUN, sound = LUIE_ALERT_SOUND_TYPE_ST_CC }, -- Flame Shard (Justice Guard 2H)
+
+}
+
 LUIE.Data.AlertTable = {
 
     -- SET A PRIORITY
@@ -169,7 +177,7 @@ LUIE.Data.AlertTable = {
     [43646] = { avoid = true, priority = 3, auradetect = true, sound = LUIE_ALERT_SOUND_TYPE_GROUND }, -- Barrier [monster synergy]  (Faction NPCs)
 
     [70070] = { block = true, dodge = true, priority = 3, bs = true, result = ACTION_RESULT_BEGIN, duration = 1250, sound = LUIE_ALERT_SOUND_TYPE_ST }, -- Heavy Strike (Winterborn Warrior)
-    [64980] = { block = true, dodge = true, interrupt = true, reflect = true, priority = 3, result = ACTION_RESULT_BEGIN, duration = 1200, cc = LUIE_CC_TYPE_STAGGER, sound = LUIE_ALERT_SOUND_TYPE_ST_CC }, -- Javelin (Winterborn Warrior)
+    [64980] = { block = true, dodge = true, interrupt = true, reflect = true, priority = 3, result = ACTION_RESULT_BEGIN, duration = 1200, cc = LUIE_CC_TYPE_STAGGER, sound = LUIE_ALERT_SOUND_TYPE_ST_CC, postCast = 500 }, -- Javelin (Winterborn Warrior)
     [65033] = { block = true, dodge = true, priority = 3, bs = true, result = ACTION_RESULT_EFFECT_GAINED, duration = 1000, cc = LUIE_CC_TYPE_STAGGER, sound = LUIE_ALERT_SOUND_TYPE_ST_CC }, -- Retaliation (Winterborn Warrior)
 
     [55909] = { dodge = true, interrupt = true, priority = 3, result = ACTION_RESULT_BEGIN, duration = 1500, cc = LUIE_CC_TYPE_SNARE, postCast = 2300, sound = LUIE_ALERT_SOUND_TYPE_TRAVELER }, -- Grasping Vines (Winterborn Mage)
@@ -219,7 +227,7 @@ LUIE.Data.AlertTable = {
 
     [84818] = { interrupt = true, priority = 3, auradetect = true, duration = 4000, sound = LUIE_ALERT_SOUND_TYPE_HEAL }, -- Fiendish Healing (Skaafin Witchling) (Morrowind)
 
-    [84835] = { avoid = true, priority = 2, eventdetect = true, sound = LUIE_ALERT_SOUND_TYPE_GROUND }, -- Broken Pact (Skaafin) (Morrowind) -- TODO: Result needed here
+    [84835] = { avoid = true, priority = 2, eventdetect = true, duration = 2300, result = ACTION_RESULT_BEGIN, sound = LUIE_ALERT_SOUND_TYPE_GROUND, postCast = 4000 }, -- Broken Pact (Skaafin) (Morrowind)
 
     -- ANIMALS
     [5452] = { block = true, dodge = true, priority = 3, bs = true, eventdetect = true, result = ACTION_RESULT_BEGIN, duration = 1500, cc = LUIE_CC_TYPE_STAGGER, sound = LUIE_ALERT_SOUND_TYPE_AOE_CC }, -- Lacerate (Alit)
@@ -1430,11 +1438,11 @@ LUIE.Data.AlertZoneOverride = {
 
     [7835] = { -- Convalescence (Lamia)
         [131] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
-        [58] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
     },
     [9680] = { -- Summon Spectral Lamia
         [131] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
-        [58] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Lamia_Curare, -- Tempest Island
     },
 
     [35220] = { -- Impending Storm (Storm Atronach)
@@ -1442,7 +1450,7 @@ LUIE.Data.AlertZoneOverride = {
         -- DUNGEONS
         [681] = Unitnames.NPC_Storm_Atronach, -- City of Ash II
         [131] = Unitnames.NPC_Storm_Atronach, -- Tempest Island
-        [58] = Unitnames.NPC_Storm_Atronach, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Storm_Atronach, -- Tempest Island
     },
 
     [54021] = { -- Release Flame (Marruz)
@@ -1473,7 +1481,7 @@ LUIE.Data.AlertZoneOverride = {
         [931] = Unitnames.NPC_Dremora_Invoker, -- Elden Hollow II
         [681] = Unitnames.NPC_Dremora_Gandrakyn, -- City of Ash II
         [131] = Unitnames.NPC_Sea_Viper_Healer, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Healer, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Healer, -- Tempest Island
         [932] = Unitnames.NPC_Spiderkith_Cauterizer, -- Crypt of Hearts II
         [22] = Unitnames.NPC_Treasure_Hunter_Healer, -- Volenfell
     },
@@ -1548,7 +1556,7 @@ LUIE.Data.AlertZoneOverride = {
 
         -- DUNGEONS
         [131] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
     },
     [17867] = { -- Shock Aura (Thundermaul)
         [Zonenames.Zone_Maormer_Invasion_Camp] = Unitnames.Elite_Arstul, -- Maormer Invasion Camp (Auridon)
@@ -1564,7 +1572,7 @@ LUIE.Data.AlertZoneOverride = {
         -- DUNGEONS
         [126] = Unitnames.Boss_Nenesh_gro_Mal, -- Elden Hollow I
         [131] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Charger, -- Tempest Island
     },
     [29520] = { -- Aura of Protection (Shaman)
 
@@ -1597,7 +1605,7 @@ LUIE.Data.AlertZoneOverride = {
         [126] = Unitnames.NPC_Darkfern_Stalker, -- Elden Hollow I
         -- [176] = Unitnames.NPC_Dagonite_Assassin, -- City of Ash I -- Can't use due to Assassin Exemplar
         [681] = Unitnames.NPC_Urata_Militant, -- City of Ash II
-        [58] = Unitnames.Boss_Yalorasse_the_Speaker, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.Boss_Yalorasse_the_Speaker, -- Tempest Island
     },
     [37108] = { -- Arrow Spray (Archer)
         -- QUESTS
@@ -1637,7 +1645,7 @@ LUIE.Data.AlertZoneOverride = {
         [126] = Unitnames.NPC_Darkfern_Archer, -- Elden Hollow I
         [681] = Unitnames.NPC_Xivilai_Immolator, -- City of Ash II
         [131] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
         [932] = Unitnames.NPC_Spiderkith_Wefter, -- Crypt of Hearts II
     },
     [28628] = { -- Volley (Archer)
@@ -1677,7 +1685,7 @@ LUIE.Data.AlertZoneOverride = {
         [126] = Unitnames.NPC_Darkfern_Archer, -- Elden Hollow I
         [681] = Unitnames.NPC_Xivilai_Immolator, -- City of Ash II
         [131] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Deadeye, -- Tempest Island
         [932] = Unitnames.NPC_Spiderkith_Wefter, -- Crypt of Hearts II
     },
     [12439] = { -- Burning Arrow (Synergy)
@@ -1908,7 +1916,7 @@ LUIE.Data.AlertZoneOverride = {
 
         -- DUNGEONS
         [131] = Unitnames.NPC_Sea_Viper_Strongarm, -- Tempest Island
-        [58] = Unitnames.NPC_Sea_Viper_Strongarm, -- Tempest Island
+        [Zonenames.Zone_Tempest_Island] = Unitnames.NPC_Sea_Viper_Strongarm, -- Tempest Island
     },
 
     [37087] = { -- Lightning Onslaught (Battlemage)
@@ -2249,6 +2257,10 @@ LUIE.Data.AlertZoneOverride = {
     [121643] = { -- Defiled Ground (Euraxian Necromancer)
         [1106] = Unitnames.NPC_Euraxian_Necromancer, -- Elsweyr (Bright Moons, Warm Sands)
     },
+
+    [5240] = { -- Lash (Giant Snake)
+        [534] = Unitnames.Elite_Deathfang, -- Deathfang (Stros M'Kai)
+    }
 }
 
 -- Map Name override - Sometimes we need to use GetMapName() instead of Location Name or ZoneId

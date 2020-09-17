@@ -26,6 +26,7 @@ local moduleName = LUIE.name .. "CombatInfo"
 local uiTlw = {} -- GUI
 local refireDelay = {}
 local g_alertFont -- Font for Alerts
+local g_inDuel -- Tracker for whether the player is in a duel or not
 
 local alertTypes = {
     UNMIT    = "LUIE_ALERT_TYPE_UNMIT",
@@ -224,6 +225,27 @@ function AbilityAlerts.CreateAlertFrame()
     end
 
     eventManager:RegisterForUpdate(moduleName .. "AlertUpdate", 100, AbilityAlerts.AlertUpdate)
+
+    eventManager:RegisterForEvent(moduleName, EVENT_DUEL_STARTED, AbilityAlerts.OnDuelStarted)
+    eventManager:RegisterForEvent(moduleName, EVENT_DUEL_FINISHED, AbilityAlerts.OnDuelFinished)
+    eventManager:RegisterForEvent(moduleName, EVENT_PLAYER_ACTIVATED, AbilityAlerts.OnPlayerActivated)
+
+end
+
+function AbilityAlerts.OnDuelStarted()
+    g_inDuel = true
+end
+
+function AbilityAlerts.OnDuelFinished()
+    g_inDuel = false
+end
+
+function AbilityAlerts.OnPlayerActivated()
+    local duelState = GetDuelInfo()
+    if duelState == DUEL_STATE_DUELING then
+        g_inDuel = true
+    end
+    UnregisterForEvent(moduleName, EVENT_PLAYER_ACTIVATED)
 end
 
 function AbilityAlerts.ResetAlertFramePosition()
@@ -543,6 +565,8 @@ function AbilityAlerts.ProcessAlert(abilityId, unitName, sourceUnitId)
     if not Alerts[abilityId] then return end
     -- Ignore this event if we are on refire delay (whether from delay input in the table or from a "bad" event processing)
     if refireDelay[abilityId] then return end
+    -- Ignore this event if we're dueling
+    if g_inDuel then return end
 
     -- Set CC Type if applicable
     local crowdControl
@@ -608,23 +632,36 @@ function AbilityAlerts.ProcessAlert(abilityId, unitName, sourceUnitId)
     end
 
     -- Handle effects that override by ZoneId
-    if Effects.MapDataOverride[abilityId] then
+    if Effects.ZoneDataOverride[abilityId] then
         local index = GetZoneId(GetCurrentMapZoneIndex())
         local zoneName = GetPlayerLocationName()
-        if Effects.MapDataOverride[abilityId][index] then
-            if Effects.MapDataOverride[abilityId][index].name then
-                abilityName = Effects.MapDataOverride[abilityId][index].name
+        if Effects.ZoneDataOverride[abilityId][index] then
+            if Effects.ZoneDataOverride[abilityId][index].name then
+                abilityName = Effects.ZoneDataOverride[abilityId][index].name
             end
-            if Effects.MapDataOverride[abilityId][index].icon then
-                abilityIcon = Effects.MapDataOverride[abilityId][index].icon
+            if Effects.ZoneDataOverride[abilityId][index].icon then
+                abilityIcon = Effects.ZoneDataOverride[abilityId][index].icon
             end
         end
-        if Effects.MapDataOverride[abilityId][zoneName] then
-            if Effects.MapDataOverride[abilityId][zoneName].name then
-                abilityName = Effects.MapDataOverride[abilityId][zoneName].name
+        if Effects.ZoneDataOverride[abilityId][zoneName] then
+            if Effects.ZoneDataOverride[abilityId][zoneName].name then
+                abilityName = Effects.ZoneDataOverride[abilityId][zoneName].name
             end
-            if Effects.MapDataOverride[abilityId][zoneName].icon then
-                abilityIcon = Effects.MapDataOverride[abilityId][zoneName].icon
+            if Effects.ZoneDataOverride[abilityId][zoneName].icon then
+                abilityIcon = Effects.ZoneDataOverride[abilityId][zoneName].icon
+            end
+        end
+    end
+
+    -- Override name, icon, or hide based on Map Name
+    if Effects.MapDataOverride[abilityId] then
+        local mapName = GetMapName()
+        if Effects.MapDataOverride[abilityId][mapName] then
+            if Effects.MapDataOverride[abilityId][mapName].icon then
+                abilityIcon = Effects.MapDataOverride[abilityId][mapName].icon
+            end
+            if Effects.MapDataOverride[abilityId][mapName].name then
+                abilityName = Effects.MapDataOverride[abilityId][mapName].name
             end
         end
     end
@@ -905,23 +942,23 @@ function AbilityAlerts.OnCombatIn(eventCode, resultType, isError, abilityName, a
     end
 
     -- Handle effects that override by ZoneId
-    if Effects.MapDataOverride[abilityId] then
+    if Effects.ZoneDataOverride[abilityId] then
         local index = GetZoneId(GetCurrentMapZoneIndex())
         local zoneName = GetPlayerLocationName()
-        if Effects.MapDataOverride[abilityId][index] then
-            if Effects.MapDataOverride[abilityId][index].name then
-                abilityName = Effects.MapDataOverride[abilityId][index].name
+        if Effects.ZoneDataOverride[abilityId][index] then
+            if Effects.ZoneDataOverride[abilityId][index].name then
+                abilityName = Effects.ZoneDataOverride[abilityId][index].name
             end
-            if Effects.MapDataOverride[abilityId][index].icon then
-                abilityIcon = Effects.MapDataOverride[abilityId][index].icon
+            if Effects.ZoneDataOverride[abilityId][index].icon then
+                abilityIcon = Effects.ZoneDataOverride[abilityId][index].icon
             end
         end
-        if Effects.MapDataOverride[abilityId][zoneName] then
-            if Effects.MapDataOverride[abilityId][zoneName].name then
-                abilityName = Effects.MapDataOverride[abilityId][zoneName].name
+        if Effects.ZoneDataOverride[abilityId][zoneName] then
+            if Effects.ZoneDataOverride[abilityId][zoneName].name then
+                abilityName = Effects.ZoneDataOverride[abilityId][zoneName].name
             end
-            if Effects.MapDataOverride[abilityId][zoneName].icon then
-                abilityIcon = Effects.MapDataOverride[abilityId][zoneName].icon
+            if Effects.ZoneDataOverride[abilityId][zoneName].icon then
+                abilityIcon = Effects.ZoneDataOverride[abilityId][zoneName].icon
             end
         end
     end

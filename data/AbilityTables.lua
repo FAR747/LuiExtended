@@ -30,7 +30,7 @@ local AbilityTables = {
     Skill_Major_Berserk               = 36973,
     Skill_Minor_Force                 = 68595,
     Skill_Major_Force                 = 85154,
-    Skill_Minor_Vitality              = 34837,
+    Skill_Minor_Vitality              = 64080,
     Skill_Major_Vitality              = 42197,
     Skill_Minor_Mending               = 29096,
     Skill_Major_Mending               = 55033,
@@ -328,7 +328,7 @@ local AbilityTables = {
     Set_Varens_Legacy                 = 79029,
     Set_Syvarras_Scales               = 75717,
     Set_Twin_Sisters                  = 32828,
-    Set_Way_of_Fire                   = 52710,
+    Set_Wilderqueens_Arch             = 34870,
     Set_Plague_Slinger                = 102113,
     Set_Ice_Furnace                   = GetString(SI_LUIE_SKILL_SET_ICE_FURNACE),
     Set_Hand_of_Mephala               = 84355,
@@ -397,7 +397,7 @@ local AbilityTables = {
     Set_Quick_Serpent                 = 50995,
     Set_Vicious_Serpent               = 61440,
     Set_Twilight_Remedy               = 75770,
-    Set_Cowards_Gear                  = GetString(SI_LUIE_SKILL_SET_COWARDS_GEAR),
+    Set_Cowards_Gear                  = 92908,
     Set_Wizards_Riposte               = 92920,
     Set_Indomitable_Fury              = 113324,
     Set_Soldier_of_Anguish            = 113460,
@@ -433,6 +433,8 @@ local AbilityTables = {
     Set_Reactive_Armor                = 68947,
     Set_Kynes_Blessing                = 136098,
     Set_Blood_Curse                   = 139903,
+    Set_Sanguine_Burst                = 142305,
+    Set_Heed_the_Call                 = 142780,
 
     Disguise_Monks_Disguise           = GetString(SI_LUIE_SKILL_DISGUISE_MONKS_DISGUISE),
 
@@ -507,7 +509,6 @@ local AbilityTables = {
     Skill_Dragon_Blood                = 29004,
     Skill_Green_Dragon_Blood          = 32744,
     Skill_Coagulating_Blood           = 32722,
-    Skill_Reflective_Plate            = 21014,
     Skill_Inhale                      = 31837,
     Skill_Dragon_Leap                 = 29016,
     Skill_Take_Flight                 = 32719,
@@ -566,7 +567,7 @@ local AbilityTables = {
     -- Sorcerer
     Skill_Exploitation                = 31389,
     Skill_Crystal_Shard               = 43714,
-    Skill_Crystal_Blast               = 46331,
+    Skill_Crystal_Blast               = 46704,
     Skill_Crystal_Fragments           = 46324,
     Skill_Restraining_Prison          = 28311,
     Skill_Daedric_Tomb                = 24842,
@@ -687,6 +688,7 @@ local AbilityTables = {
     Skill_Render_Flesh                = 114196,
     Skill_Resistant_Flesh             = 117883,
     Skill_Blood_Sacrifice             = 117888,
+    Skill_Empowering_Grasp            = 118352,
 
     -- ---------------------------------------------------
     -- WEAPON SKILLS -------------------------------------

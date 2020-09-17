@@ -174,7 +174,7 @@ local strings = {
     -- SpellCastBuffs
     SI_LUIE_SCB_WINDOWTITLE_PLAYERBUFFS =                "Player Buffs",
     SI_LUIE_SCB_WINDOWTITLE_PLAYERDEBUFFS =              "Player Debuffs",
-    SI_LUIE_SCB_WINDOWTITLE_PLAYERLONGTERMEFFECTS =      "Player Long Term Effects",
+    SI_LUIE_SCB_WINDOWTITLE_PLAYERLONGTERMEFFECTS =      "Player Long Term",
     SI_LUIE_SCB_WINDOWTITLE_TARGETBUFFS =                "Target Buffs",
     SI_LUIE_SCB_WINDOWTITLE_TARGETDEBUFFS =              "Target Debuffs",
     SI_LUIE_SCB_WINDOWTITLE_PROMINENTBUFFS =             "Prominent Buffs",
@@ -612,8 +612,7 @@ local strings = {
     SI_LUIE_CI_MITIGATION_MODIFIER_SPREAD_OUT =          "- SPREAD OUT!",
 
     -- UnitFrames
-    SI_LUIE_UF_WEREWOLF_POWER =                          "<<1>>/<<2>> Power (<<3>>%)",
-    SI_LUIE_UF_WEREWOLF_TP =                             "You will remain in Werewolf Form for |cFFFFFF<<1>>|r seconds.",
+    SI_LUIE_UF_WEREWOLF_POWER =                          "<<1>>/<<2>> Rage (<<3>>%)",
     SI_LUIE_UF_MOUNT_POWER =                             "<<1>>/<<2>> Mount Stamina (<<3>>%)",
     SI_LUIE_UF_SIEGE_POWER =                             "<<1>>/<<2>> Condition (<<3>>%)",
     SI_LUIE_UF_DEAD_STATUS_REVIVING =                    "Reviving...",
